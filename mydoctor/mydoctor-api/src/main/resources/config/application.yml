@@ -1,0 +1,33 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    ROOT: INFO
+    com.jiwhiz: DEBUG
+    org.springframework.security: TRACE
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://auth.mydoctor:8080/realms/mydoctor-demo
+          jwk-set-uri: http://auth.mydoctor:8080/realms/mydoctor-demo/protocol/openid-connect/certs
+      client:
+        registration:
+          myhealth-client:
+            client-id: mydoctor-api-server
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
+            provider: health-auth-provider
+          mydoctor-client:
+            client-id: mydoctor-api
+            client-secret: nvYxjQFYGdNI8zj5Nb3Jz25ezWgN1cE8
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:token-exchange
+            provider: doctor-auth-provider
+        provider:
+          doctor-auth-provider:
+            token-uri: http://auth.mydoctor:8080/realms/mydoctor-demo/protocol/openid-connect/token
+          health-auth-provider:
+            token-uri: http://auth.myhealth:8090/realms/myhealth-demo/protocol/openid-connect/token

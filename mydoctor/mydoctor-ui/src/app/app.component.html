@@ -1,0 +1,48 @@
+<h1>My Doctor</h1>
+
+@if (isLoggedIn) {
+  <button type="button" (click)="logout()">Log out</button>
+} @else {
+  <button type="button" (click)="login()">Log in</button>
+}
+
+@if (userProfile) {
+  <h2>User information</h2>
+  <table>
+    @if (userProfile.username) {
+      <tr>
+        <th scope="row">Username</th>
+        <td>{{ userProfile.username }}</td>
+      </tr>
+    }
+    @if (userProfile.firstName) {
+      <tr>
+        <th scope="row">First name</th>
+        <td>{{ userProfile.firstName }}</td>
+      </tr>
+    }
+    @if (userProfile.lastName) {
+      <tr>
+        <th scope="row">First name</th>
+        <td>{{ userProfile.lastName }}</td>
+      </tr>
+    }
+    @if (userProfile.email) {
+      <tr>
+        <th scope="row">E-mail</th>
+        <td>{{ userProfile.email }}</td>
+      </tr>
+    }
+
+    <tr>
+      <th scope="row">E-mail verified</th>
+      <td>{{ userProfile.emailVerified ? 'Yes' : 'No' }}</td>
+    </tr>
+  </table>
+
+}
+
+@if (isLoggedIn) {
+  <button type="button" (click)="appts()">call http://api.mydoctor:8081/api/appointments</button><br/>
+  <button type="button" (click)="records()">call http://api.mydoctor:8081/api/records</button>
+}

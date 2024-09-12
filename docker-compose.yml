@@ -1,0 +1,25 @@
+services:
+  mydoctor-keycloak:
+    image: quay.io/keycloak/keycloak:25.0.5
+    container_name: auth.mydoctor
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - 8080:8080
+    volumes:
+      - ./mydoctor/keycloak/:/opt/keycloak/data/import:ro
+    entrypoint: '/opt/keycloak/bin/kc.sh start-dev --features=preview --import-realm'
+
+  myhealth-keycloak:
+    image: quay.io/keycloak/keycloak:25.0.5
+    container_name: auth.myhealth
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HTTP_PORT: 8090
+    ports:
+      - 8090:8090
+    volumes:
+      - ./myhealth/keycloak/:/opt/keycloak/data/import:ro
+    entrypoint: '/opt/keycloak/bin/kc.sh start-dev --features=preview --import-realm'
