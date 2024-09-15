@@ -55,7 +55,7 @@ public class ProjectConfig {
             .csrf(AbstractHttpConfigurer::disable)
             .cors((cors) -> cors.configurationSource(request -> {
                 var corsConfig = new CorsConfiguration();
-                corsConfig.setAllowedOrigins(List.of("http://mydoctor:4200"));
+                corsConfig.setAllowedOrigins(List.of("http://mydoctor:4200", "http://localhost:1234"));
                 corsConfig.setAllowedMethods(
                     List.of("GET", "POST", "OPTIONS", "PUT", "DELETE")
                 );
@@ -70,7 +70,7 @@ public class ProjectConfig {
                 .anyRequest().denyAll()
             )
             .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
-                .jwt( jwt -> jwt.jwtAuthenticationConverter(new KeycloakJwtAuthenticationConverter(List.of("mydoctor-ui"))))
+                .jwt( jwt -> jwt.jwtAuthenticationConverter(new KeycloakJwtAuthenticationConverter(List.of("mydoctor-ui", "mydoctor-elm"))))
             )
             .oauth2Client(Customizer.withDefaults());
             ;

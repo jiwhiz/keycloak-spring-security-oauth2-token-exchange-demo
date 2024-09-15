@@ -617,7 +617,7 @@
     "clientAuthenticatorType" : "client-secret",
     "secret" : "GwkeCJ6Kg8ZBSrv4TiCN3StaIuKevaBD",
     "redirectUris" : [ "http://auth.mydoctor:8080/*" ],
-    "webOrigins" : [ "http://auth.mydoctor:8080/*" ],
+    "webOrigins" : [ "http://auth.mydoctor:8080" ],
     "notBefore" : 0,
     "bearerOnly" : false,
     "consentRequired" : false,
@@ -633,7 +633,7 @@
       "oidc.ciba.grant.enabled" : "false",
       "client.secret.creation.time" : "1726119568",
       "backchannel.logout.session.required" : "true",
-      "post.logout.redirect.uris" : "http://auth.mydoctor:8080",
+      "post.logout.redirect.uris" : "http://auth.mydoctor:8080/*",
       "oauth2.device.authorization.grant.enabled" : "false",
       "display.on.consent.screen" : "false",
       "backchannel.logout.revoke.offline.tokens" : "false"

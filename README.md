@@ -21,7 +21,9 @@ Install [NodeJS](https://nodejs.org/).
 Install [Angular cli](https://angular.dev/tools/cli).
 
 ### Add custom domain to /etc/hosts
-We have six servers running lcoally, and if we all use `localhost` with different port numbers, it will mess up browser cookies. So we use custom domain for each server, and add following to your `/etc/hosts` file:
+We have six servers running locally, and if we all use `localhost` with different port numbers,
+it will mess up browser cookies. So we use custom domain for each server,
+and add following to your `/etc/hosts` file:
 
 ```
 127.0.0.1 mydoctor
@@ -40,7 +42,8 @@ Run
 docker compose up -d
 ```
 
-You can login to **MyDoctor** Keycloak server at [http://auth.mydoctor:8080](http://auth.mydoctor:8080) and **MyHealth** Keycloak server at [http://auth.myhealth:8090](http://auth.myhealth:8090) with `admin` as username and password.
+You can login to **MyDoctor** Keycloak server at [http://auth.mydoctor:8080](http://auth.mydoctor:8080)
+and **MyHealth** Keycloak server at [http://auth.myhealth:8090](http://auth.myhealth:8090) with `admin` as username and password.
 
 ### Start MyHealth API server and Web App
 Under `./myhealth/myhealth-api`, run
