@@ -1,7 +1,11 @@
 {
   "app": {
     "elm": {
-      "development": { "debugger": true },
+      "development": 
+        { "debugger": true
+        , "server.host": "myserver"
+        , "server.port": 2345
+        },
       "production": { "debugger": false }
     },
     "env": [],

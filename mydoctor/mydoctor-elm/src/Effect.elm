@@ -6,7 +6,7 @@ port module Effect exposing
     , pushRoutePath, replaceRoutePath
     , loadExternalUrl, back
     , map, toCmd
-    , checkAuthenticated, loginWithKeycloak, logoutFromKeycloak, onLoginSuccess
+    , loginWithKeycloak, logoutFromKeycloak, onLoginSuccess
     )
 
 {-|
@@ -47,16 +47,12 @@ type Effect msg
       -- SHARED
     | SendSharedMsg Shared.Msg.Msg
       -- Keycloak port
-    | CheckAuthenticated
     | LoginWithKeycloak
     | LogoutFromKeycloak
 
 
 
 -- Define Ports
-
-
-port checkAuth : () -> Cmd msg
 
 
 port login : () -> Cmd msg
@@ -71,11 +67,6 @@ port logout : () -> Cmd msg
 loginWithKeycloak : Effect msg
 loginWithKeycloak =
     LoginWithKeycloak
-
-
-checkAuthenticated : Effect msg
-checkAuthenticated =
-    CheckAuthenticated
 
 
 logoutFromKeycloak : Effect msg
@@ -211,9 +202,6 @@ map fn effect =
         LoginWithKeycloak ->
             LoginWithKeycloak
 
-        CheckAuthenticated ->
-            CheckAuthenticated
-
         LogoutFromKeycloak ->
             LogoutFromKeycloak
 
@@ -259,9 +247,6 @@ toCmd options effect =
 
         LoginWithKeycloak ->
             Debug.log "LoginWithKeycloak" <| login ()
-
-        CheckAuthenticated ->
-            checkAuth ()
 
         LogoutFromKeycloak ->
             logout ()

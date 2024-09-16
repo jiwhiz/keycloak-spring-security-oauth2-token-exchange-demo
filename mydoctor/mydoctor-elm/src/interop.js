@@ -22,30 +22,26 @@ export const flags = ({ env }) => {
 // messages from Elm
 export const onReady = ({ app, env }) => {
     console.log("onReady");
-    
 
-    // Listen to the Elm 'login' port
-    if (app.ports && app.ports.login) {
-        app.ports.checkAuth.subscribe( () => {
-            console.log("app.ports.login.checkAuth()");
-            // Initialize Keycloak
-            keycloak
-            .init({
-                onLoad: 'check-sso',
-                silentCheckSsoRedirectUri:
-                    window.location.origin + '/.elm-land/server/silent-check-sso.html'
-            })
-            .then(function (result) {
-                console.log("After init: " + result);
-                if (keycloak.authenticated) {
-                    console.log("Authenticated. Send the access token back to Elm");
-                    app.ports.onLoginSuccess.send(keycloak.token);
-                }
-            });
-        });
+    // Initialize Keycloak
+    keycloak
+    .init({
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+            window.location.origin + '/assets/silent-check-sso.html'
+    })
+    .then(function (result) {
+        console.log("After init: " + result);
+        if (keycloak.authenticated) {
+            console.log("Authenticated. Send the access token back to Elm");
+            app.ports.onLoginSuccess.send(keycloak.token);
+        }
+    });
+
+    if (app.ports && app.ports.login && app.ports.logout) {
 
         app.ports.login.subscribe( () => {
-            console.log("app.ports.login.subscribe()");
+            console.log("Call login()");
             keycloak
             .login()
             .then(function () {

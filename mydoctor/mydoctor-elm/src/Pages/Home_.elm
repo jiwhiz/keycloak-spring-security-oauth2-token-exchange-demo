@@ -1,6 +1,6 @@
 module Pages.Home_ exposing (Model, Msg, page)
 
-import Effect exposing (Effect, checkAuthenticated, loginWithKeycloak, logoutFromKeycloak, onLoginSuccess)
+import Effect exposing (Effect, loginWithKeycloak, logoutFromKeycloak, onLoginSuccess)
 import Html exposing (Html, br, button, div, text)
 import Html.Events exposing (onClick)
 import Http
@@ -34,7 +34,7 @@ type alias Model =
 init : () -> ( Model, Effect Msg )
 init _ =
     ( { isLoggedIn = False, accessToken = Nothing, apiResponse = Nothing }
-    , checkAuthenticated
+    , Effect.none
     )
 
 
